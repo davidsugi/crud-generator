@@ -13,6 +13,11 @@
     "require-dev": {
         "laracasts/generators": "^1.1"
     },
+    "autoload": {
+        "psr-4": {
+            "Luxodev\\CrudGenerators\\": "src/"
+        }
+    },
     "extra": {
         "laravel": {
             "providers": [
