@@ -1,0 +1,47 @@
+@extends('layouts.app')
+@section('title')
+{{ ${{modelNameSingular}}->exists ? 'Ubah' : 'Tambah' }} {{modelName}}
+@endsection
+@if(${{modelNameSingular}}->exists)
+@section('actionbtn')
+<a data-href="{{ route('{{modelNamePlural}}.destroy', ${{modelNameSingular}}->id) }}" class="btn btn-danger destroy">Hapus {{modelName}}</a>
+@endsection
+@endif
+
+@section('content')
+<div class="row">
+    <div class="col-xs-10">
+        <div class="box">
+            <div class="box-body">
+                @if(${{modelNameSingular}}->exists)
+                    {!! Form::model(${{modelNameSingular}}, ['route' => ['{{modelNamePlural}}.update', ${{modelNameSingular}}->id], 'method'=>'PATCH', 'files' => true]) !!}
+                @else
+                    {!! Form::model(${{modelNameSingular}}, ['route' => ['{{modelNamePlural}}.store'], 'class' => 'col s12', 'files' => true]) !!}
+                @endif
+
+
+                <div class="box-footer">
+                    {{ Form::submit('Save', ['class' => 'btn btn-success']) }}
+                </div>
+                {{ Form::close() }}
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+@push('scripts')
+<form id='destroy-form' method="POST">
+    {{ csrf_field() }}
+    <input type="hidden" name="_method" value="DELETE">
+</form>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.destroy').click(function() {
+            if(confirm('Apakah anda yakin?') ) {
+                $('#destroy-form').attr('action',$(this).data('href'));
+                $('#destroy-form').submit();
+            }
+        });
+    });
+</script>
+@endpush

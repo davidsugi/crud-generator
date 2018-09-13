@@ -1,0 +1,20 @@
+{
+    "name": "luxodev/crud-generator",
+    "description": "generate simple MVC CRUD",
+    "type": "library",
+    "require": {
+        "laravelcollective/html": "^5.4.0",
+        "watson/active": "^3.0"
+    },
+    "require-dev": {
+        "laracasts/generators": "^1.1"
+    },
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Luxodev",
+            "email": "luxodev@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}

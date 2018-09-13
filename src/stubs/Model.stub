@@ -1,0 +1,16 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class {{modelName}} extends Model
+{
+    protected $table = '{{modelNamePlural}}';
+    protected $guarded=[];
+    public function detail_{{modelNameSingular}}()
+    {
+        return $this->hasMany('App\Detail{{modelName}}');
+    }
+
+}
