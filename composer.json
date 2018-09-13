@@ -2,7 +2,7 @@
     "name": "Mileon/Generator",
     "description": "Generate LARAVEL CRUD with view and api",
     "type": "Library",
-    "license": "MILEONTECH",
+    "license": "MIT",
     "minimum-stability": "dev",
     "require": {
         "php": "^5.3.3 || ^7.0",
