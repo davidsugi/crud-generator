@@ -1,5 +1,5 @@
 {
-    "name": "Luxodev/Generator",
+    "name": "luxodev/crud-generator",
     "description": "Generate LARAVEL CRUD with view and api",
     "type": "Library",
     "license": "MIT",
@@ -21,7 +21,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Luxodev\\Generator\\GeneratorServiceProvider"
+                "Luxodev\\CrudGenerator\\GeneratorServiceProvider"
             ]
         }
     }
