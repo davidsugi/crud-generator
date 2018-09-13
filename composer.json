@@ -1,5 +1,5 @@
 {
-    "name": "Mileon/Generator",
+    "name": "Luxodev/Generator",
     "description": "Generate LARAVEL CRUD with view and api",
     "type": "Library",
     "license": "MIT",
@@ -16,7 +16,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Mileon\\Generator\\GeneratorServiceProvider"
+                "Luxodev\\Generator\\GeneratorServiceProvider"
             ]
         }
     }
