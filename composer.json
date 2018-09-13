@@ -7,7 +7,8 @@
     "require": {
         "php": "^5.3.3 || ^7.0",
         "laravelcollective/html": "^5.4.0",
-        "watson/active": "^3.0"
+        "watson/active": "^3.0",
+        "laracasts/generators": "^1.1"
     },
     "require-dev": {
         "laracasts/generators": "^1.1"
