@@ -11,7 +11,7 @@
     },
     "autoload": {
         "psr-4": {
-            "luxodev\\crud-generator": "src/"
+            "luxodev\\crud-generator\\": "src/"
         }
     },
     "license": "proprietary",
