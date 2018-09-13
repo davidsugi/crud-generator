@@ -1,0 +1,22 @@
+{
+    "name": "Mileon/Generator",
+    "description": "Generate LARAVEL CRUD with view and api",
+    "type": "Library",
+    "license": "MILEONTECH",
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^5.3.3 || ^7.0",
+        "laravelcollective/html": "^5.4.0",
+        "watson/active": "^3.0"
+    },
+    "require-dev": {
+        "laracasts/generators": "^1.1"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Mileon\\Generator\\GeneratorServiceProvider"
+            ]
+        }
+    }
+}

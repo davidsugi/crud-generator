@@ -1,0 +1,16 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Detail{{modelName}} extends Model
+{
+    protected $table = 'detail_{{modelNamePlural}}';
+    protected $guarded=[];
+    public function {{modelNameSingular}}()
+    {
+        return $this->BelongsTo('App\{{modelName}}','{{modelNameSingular}}_id');
+    }
+
+}
