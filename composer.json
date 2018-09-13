@@ -9,6 +9,11 @@
     "require-dev": {
         "laracasts/generators": "^1.1"
     },
+    "autoload": {
+        "psr-0": {
+            "luxodev\\crud-generator": "src/"
+        }
+    },
     "license": "proprietary",
     "authors": [
         {
