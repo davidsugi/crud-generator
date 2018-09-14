@@ -1,0 +1,161 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use App\{{modelName}};
+use App\Detail{{modelName}};
+use DB; 
+use Illuminate\Validation\ValidationException;
+
+class {{modelName}}Controller extends Controller
+{
+    public function index(Request $request)
+    {
+        ${{modelNamePlural}} = {{modelName}}::query();
+        $filter = [];
+        if(isset($request->filter)) {
+            $filter = $request->filter;
+            foreach ($filter as $key => $value) {
+                if(!empty($value)) {
+                    ${{modelNamePlural}}  = ${{modelNamePlural}}->where($key, 'like', '%'.$value.'%');
+                }
+            }
+        }
+        ${{modelNamePlural}}=${{modelNamePlural}}->orderBy('id','DESC')->paginate(20);
+        return view('{{modelNameSingular}}.index')
+        ->with('{{modelNamePlural}}', ${{modelNamePlural}})
+        ->with('filter',$filter);
+    }
+    public function create(){
+        ${{modelNameSingular}} = new {{modelName}};
+        return view('{{modelNameSingular}}._form')->with('{{modelNameSingular}}', ${{modelNameSingular}});
+    }
+    public function store(Request $request){
+        DB::beginTransaction();
+        $errors = [];
+        //$errors = array_add($errors, 'request_field', 'Terapat field Yang kurang tepat');
+        //if($chk){
+        //    DB::rollBack();
+        //    throw ValidationException::withMessages($errors);
+        //} 
+        ${{modelNameSingular}} = new {{modelName}};
+        ${{modelNameSingular}}->fill($request->except('detail'));
+        ${{modelNameSingular}}->save();
+        foreach($request->detail as $i=>$detail){
+            $new = new Detail{{modelName}};
+            $new->name = $detail->name;
+            $new->{{modelNameSingular}}_id= ${{modelNameSingular}}->id;
+            $new->save();
+        }
+        DB::commit();
+        $request->session()->flash('toast', '{{modelName}} berhasil ditambahkan!');
+        return redirect()->route('{{modelNamePlural}}.index');
+    }
+    public function edit($id){
+        ${{modelNameSingular}} = {{modelName}}::find($id);
+        return view('{{modelNameSingular}}._form')->with('{{modelNameSingular}}',${{modelNameSingular}});
+    }
+    public function update($id, Request $request){
+        DB::beginTransaction();
+        ${{modelNameSingular}} = {{modelName}}::find($id);
+        ${{modelNameSingular}}->fill($request->except('detail'));
+        $errors = [];
+        //$errors = array_add($errors, 'request_field', 'Terapat field Yang kurang tepat');
+        //if($chk){
+        //    DB::rollBack();
+        //    throw ValidationException::withMessages($errors);
+        //} 
+        $delete_detail= Detail{{modelName}}::where('{{modelNameSingular}}_id',${{modelNameSingular}}->id)->delete();
+        foreach($request->detail as $i=>$detail){
+            $new = new Detail{{modelName}};
+            $new->name = $detail->name;
+            $new->{{modelNameSingular}}_id= ${{modelNameSingular}}->id;
+            $new->save();
+        }
+        ${{modelNameSingular}}->save();
+        DB::commit();
+        $request->session()->flash('toast', '{{modelName}}  berhasil diubah!');
+        return redirect()->route('{{modelNamePlural}}.index');
+    }
+    public function show({{modelName}} ${{modelNameSingular}}){
+        return view('{{modelNameSingular}}.show')->with('{{modelNameSingular}}', ${{modelNameSingular}});
+    }
+    public function destroy(Request $request, {{modelName}} ${{modelNameSingular}}){
+        try {
+            $delete_detail= Detail{{modelName}}::where('{{modelNameSingular}}_id',${{modelNameSingular}}->id)->delete();
+            ${{modelNameSingular}}->delete();
+            $request->session()->flash('toast', '{{modelName}} berhasil dihapus!');
+        } catch(\Illuminate\Database\QueryException $ex){ 
+            $request->session()->flash('error', '{{modelName}} gagal dihapus. ' . substr($ex->getMessage(), 0, 15));
+        }
+        return redirect()->route('{{modelNamePlural}}.index');
+    }
+
+    //API CONTROLLER FUNCTION
+    public function api_create(Request $request)
+    {
+        ${{modelNameSingular}} = {{modelName}}::create($request->all());
+        return response()->json([
+            'code' => 200,
+            'status' => true,
+            'message' => "Success",
+            'data' => ${{modelNameSingular}}
+        ], 200);
+    }
+
+    public function api_show(Request $request)
+    {
+        if(!$request->id){
+            ${{modelNameSingular}} = {{modelName}}::all();   
+        } else {
+            ${{modelNameSingular}} = {{modelName}}::findOrFail($request->id);
+        }
+        return response()->json([
+            'code' => 200,
+            'status' => true,
+            'message' => "Success",
+            'data' => ${{modelNameSingular}}
+        ], 200);
+    }
+
+    public function api_update(Request $request, $id)
+    {
+        ${{modelNameSingular}} = {{modelName}}::find($id);
+        if(!${{modelNameSingular}}){
+            return response()->json([
+                'code' => 200,
+                'status' => false,
+                'message' => "Failed"
+            ], 200);
+        }
+        ${{modelNameSingular}}->update($request->all());
+
+        return response()->json([
+            'code' => 200,
+            'status' => true,
+            'message' => "Success",
+            'data' => ${{modelNameSingular}}
+        ], 200);
+    }
+
+    public function api_delete(Request $request, $id)
+    {
+        ${{modelNameSingular}} = {{modelName}}::find($id);
+        if(!${{modelNameSingular}}){
+            return response()->json([
+                'code' => 200,
+                'status' => false,
+                'message' => "Failed"
+            ], 200);
+        }
+        {{modelName}}::destroy($id);
+        
+        return response()->json([
+            'code' => 200,
+            'status' => true,
+            'message' => "Success"
+        ], 200);
+    }
+}

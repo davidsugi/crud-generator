@@ -1,0 +1,32 @@
+{
+    "name": "luxodev/mvc",
+    "description": "Generate fully working mvc",
+    "type": "library",
+    "require": {
+        "laravelcollective/html": "^5.7",
+        "watson/active": "^3.0",
+        "laracasts/generators": "^1.1",
+        "spatie/laravel-activitylog": "^2.8",
+        "spatie/laravel-permission": "^2.19"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "luxodev",
+            "email": "luxodev@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Luxodev\\Mvc\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Luxodev\\Mvc\\MVCServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev"
+}

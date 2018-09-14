@@ -1,0 +1,89 @@
+body{
+	background-color:#FECE1A;
+}
+.table-striped > tbody > tr:nth-child(even) > td,.table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(even) > th {
+	background-color: rgb(60,60,60)!important;
+	color:white;
+	font-size:16px;
+	font-weight: bold;
+}
+.myFont{
+	color:black!important;
+}
+.myPanel{
+	background-color: rgb(60,60,60);
+	color:#FECE1A;
+	border-radius:10px;
+	font-size:20px;
+}
+.myCol1{
+	background-color: rgb(60,60,60);
+	color:#FECE1A;
+	border-radius:10px;
+	border-bottom-right-radius: 0px;
+	border-bottom-left-radius: 0px;	
+	font-size:20px;
+}
+.myCol2{
+	background-color: rgb(60,60,60);
+	color:#FECE1A;
+	height:450px;
+	border-radius:10px;
+	border-top-right-radius: 0px;
+	border-top-left-radius: 0px;	
+	font-size:20px;
+}
+.myButton{
+	color:white;
+	text-align:center;
+	font-size:16px;
+	font-weight: bold;
+}
+.myButton1{
+	background-color: rgb(34,34,34);
+	color:white;
+	font-size:20px;
+}
+.myButton:hover{
+	color:#FECE1A;
+}
+.myButton:focus{
+	color:black;
+	background-color: #FECE1A;
+}
+.myQueue1{
+	text-align:center;
+	color:blue;
+	background-color: black;
+	padding-top:5vmin;
+	height:25vmin;
+	font-size:10vmin;
+}
+.myQueue2{
+	text-align:center;
+	color:white;
+	background-color: black;
+	padding-top:5vmin;
+	height:25vmin;
+	font-size:10vmin;
+}
+.myQueue3{
+	text-align:center;
+	color:red;
+	background-color: black;
+	padding-top:5vmin;
+	height:25vmin;
+	font-size:10vmin;
+}
+.myQueue4{
+	text-align:center;
+	color:yellow;
+	background-color: black;
+	padding-top:5vmin;
+	height:25vmin;
+	font-size:10vmin;
+}
+
+.myFont{
+	color:black!important;
+}
